@@ -1,22 +1,19 @@
-function validacion(){
+
+function login(){                                       //funcion para el login
     let email = document.getElementById("email").value;
     let pass = document.getElementById("pass").value;
-    //let recordar = document.getElementById("terminos").checked;
 
-    if(email == "" || pass == ""){
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'soy una papa!',
-            confirmButtonColor: '#0d6efd',
-          })
-    }else{
-        window.location = "index.html";
+    if(email === "" || pass === ""){                      // si los campos estan vacios, tira error
+        alert('Debes Ingresar un correo y una contraseña');
+    }else{ 
+        sessionStorage.setItem('user', email);  //sino, redirige al index
+        location.href = 'index.html';
     }
 }
+login();
 
 document.addEventListener("DOMContentLoaded", () =>{
     document.getElementById("entrar").addEventListener("click",()=>{
-        validacion();
+        login();
     })
 })

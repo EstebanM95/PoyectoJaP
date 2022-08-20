@@ -1,5 +1,4 @@
 let productos=[];
-const lista = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
 function showCategoriesList(array){
     let htmlContentToAppend = "";
@@ -14,7 +13,7 @@ function showCategoriesList(array){
             </div>
             <div class="col">
                 <div class="d-flex w-100 justify-content-between">
-                    <h4 class="mb-1">${products.name} - USD ${products.cost}</h4>
+                    <h4 class="mb-1">${products.name} - ${products.currency} ${products.cost}</h4>
                     <small class="text-muted">${products.soldCount} artículos vendidos</small>
                 </div>
                 <p class="mb-1">${products.description}</p>
@@ -27,7 +26,7 @@ function showCategoriesList(array){
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    getJSONData(lista).then(function(resultObj){
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
             productos = resultObj.data;

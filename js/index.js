@@ -11,4 +11,17 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    let usuario = sessionStorage.getItem('user');
+    if (usuario == null){
+       alert('Debes Ingresar como Usuario');
+        location.href = "login.html";
+    }else{
+        alert("bienvenido " + usuario);
+    }
+
+    document.getElementById("cierro").addEventListener("click",() =>{
+        alert("Nos Vemos");
+        localStorage.clear();
+        location.href = "login.html";
+    });
 });
