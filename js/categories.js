@@ -140,4 +140,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
+
+    document.getElementById("cierro").addEventListener("click",() =>{
+        alert("Nos Vemos");
+        localStorage.clear();
+        location.href = "login.html";
+    });
 });
