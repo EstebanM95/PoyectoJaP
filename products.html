@@ -31,20 +31,62 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a id ="cierro" class="nav-link active" href="login.html">Cerrar Sesión</a>
+            <a id = "usuario" class="nav-link active"></a>
+          </li>
+          <li class="nav-item">
+            <button id ="cierro" class="btn btn-secondary">Cerrar Sesión</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main class="pb-5 container">
-    <h1 class="mb-1 centrado">Productos</h1>
-    <p class="centrado">Verás aqui todos los productos de la categoria Autos</p>
-    <div id="aca" class="container">
-      
-        
-
+    <h4 class="mb-1 text-center">Productos</h4>
+    <p class="centrado">Verás aqui todos los productos de la categoria</p>
+    <div class="container">
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="filtros" id="menorAMayor">
+            <label class="btn btn-light" for="menorAMayor">menor a mayor</label>
+            <input type="radio" class="btn-check" name="filtros" id="mayorAMenor" checked>
+            <label class="btn btn-light" for="mayorAMenor">mayor a menor</label>
+            <input type="radio" class="btn-check" name="filtros" id="relevantes" checked>
+            <label class="btn btn-light" for="relevantes"><i class="fas fa-sort-amount-down mr-1">relevancia</i></label>
+          </div>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-end my-2">Precio</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="rangoPrecioMinimo">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="rangoPrecioMaximo">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="botonFiltrar">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="botonLimpiar">Limpiar</button>
+              </div>
+            </div>
+            <div class="input-group">
+              <input type="search" id= "buscador" class="form-control rounded" placeholder="Busca tu producto" aria-label="Search" aria-describedby="search-addon" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="list-group" id="cat-list-container">
+        </div>
+      </div>
+    </div>
+    <div id="productos" class="container">
+
     </div>
   </main>
   <footer class="text-muted">
