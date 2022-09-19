@@ -7,6 +7,13 @@ let precioMin = undefined;
 let precioMax = undefined;
 let id = localStorage.getItem('catID');
 
+// guarda el id del producto para enviarlo a la pagina especifica del mismo
+function setProduId(id) {
+    localStorage.setItem("produID", id);
+    window.location = "product-info.html"
+}
+
+
 //ordena segun el criterio 
 function ordenarProductos(criterio, array){
     let filtrado = [];
@@ -40,7 +47,7 @@ function mostrarProductos(array){
         ((precioMax == undefined) || (precioMax != undefined && parseInt(products.cost) <= precioMax))){
 
         htmlContentToAppend += `
-        <div onclick="${products.id}" class="list-group-item list-group-item-action cursor-active">
+        <div onclick="setProduId(${products.id})" class="list-group-item list-group-item-action cursor-active">
         <div class="row">
             <div class="col-3">
                 <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
@@ -55,6 +62,7 @@ function mostrarProductos(array){
         </div>
         </div>
         `
+
         document.getElementById("productos").innerHTML = htmlContentToAppend; 
     }
   }

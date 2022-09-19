@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Raleway', serif !important;
+  font-family: "Raleway", serif !important;
 }
 
 .jumbotron .display-4 {
@@ -32,8 +32,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,12 +73,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -86,7 +86,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
@@ -188,9 +188,82 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
-.centrado{
+.centrado {
   text-align: center;
 }
-.imagen{
-  width:  344px;
+.imagen {
+  width: 344px;
+}
+
+.probando {
+  margin-left: auto;
+  width: 300px;
+  align-content:space-between;
+  justify-self: end;
+  align-items:baseline;
+  justify-self: center;
+}
+.comentario {
+width: 200px;
+}
+/* ////////////////////////estilos del snippet/////////////////////////////////////////////*/
+
+.card {
+  border: none;
+}
+.product {
+  background-color: #eee;
+}
+.brand {
+  font-size: 13px;
+}
+.act-price {
+  color: red;
+  font-weight: 700;
+}
+.dis-price {
+  text-decoration: line-through;
+}
+.about {
+  font-size: 14px;
+}
+.color {
+  margin-bottom: 10px;
+}
+label.radio {
+  cursor: pointer;
+}
+label.radio input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+label.radio span {
+  padding: 2px 9px;
+  border: 2px solid #ff0000;
+  display: inline-block;
+  color: #ff0000;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+label.radio input:checked + span {
+  border-color: #ff0000;
+  background-color: #ff0000;
+  color: #fff;
+}
+.btn-danger {
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+.btn-danger:hover {
+  background-color: #da0606 !important;
+  border-color: #da0606 !important;
+}
+.btn-danger:focus {
+  box-shadow: none;
+}
+.cart i {
+  margin-right: 10px;
 }

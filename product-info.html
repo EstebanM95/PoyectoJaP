@@ -1,73 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a id = "usuario" class="nav-link active"></a>
-          </li>
-          <li class="nav-item">
-            <button id ="cierro" class="btn btn-secondary">Cerrar Sesión</button>
-          </li>
-        </ul>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item">
+              <a id="usuario" class="nav-link active"></a>
+            </li>
+            <li class="nav-item">
+              <button id="cierro" class="btn btn-secondary">
+                Cerrar Sesión
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-10">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-6">
+                  <div id="cosoFotos" class="images p-3"></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="product p-4">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    ></div>
+                    <div class="mt-4 mb-3">
+                      <p id="categoria"></p>
+                      <h4 id="nombre" class="text-uppercase"></h4>
+                      <h5 id="descripcion" class=""></h5>
+                      <div
+                        class="price d-flex flex-row align-items-center"
+                      ></div>
+                    </div>
+                    <p id="descripcion" class="about"></p>
+                    <div class="sizes mt-5">
+                      <h6 class="">
+                        Vendidos:
+                        <span id="vendidos"></span>
+                      </h6>
+                    </div>
+                    <p>
+                      <span id="moneda"></span>
+                      <span id="precio" class="act-price"></span>
+                    </p>
+                    <div class="cart mt-4 align-items-center">
+                      <button class="btn btn-danger text-uppercase mr-2 px-4">
+                        Añadir al carrito
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="" class="product">
+              <p clas="product p-4">Comentarios:</p>
+              <ul id="comentarios"></ul>
+            </div>
+            <div class="product">
+              <p clas="product p-4">Agrega tu comentario:</p>
+              <textarea id="comentario"></textarea> <br />
+              <label for="puntaje"
+                >Puntaje: <span class="fa fa-star checked"></span> </label
+              >X<select name="puntuacion" id="puntuacion">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select><br>
+              <button id="postear" class="btn-primary">Publicar</button>
+            </div>
+            <div id="relacionados" class="probando product p-4">
+              <br>
+              <label for="">Productos relacionados</label>
+              <div class="d-flex probando" id="relacionados">
+                <label for="">Productos relacionados</label>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+          - 2022
+        </p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
-  </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
+  </body>
 </html>

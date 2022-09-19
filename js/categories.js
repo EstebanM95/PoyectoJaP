@@ -5,7 +5,8 @@ let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
-
+ 
+// ordena el array dado segun un criterio, restando dos valores de dos objetos a la vez
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -35,11 +36,13 @@ function sortCategories(criteria, array){
     return result;
 }
 
+// setea el id de las categorias de productos
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
 
+// funcion principal que itera el array y muestra los datos en forma de html
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -96,18 +99,22 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+    // boton de sortear de menor a mayor
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
 
+    //boton de sortear de mayor a menor
     document.getElementById("sortDesc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_DESC_BY_NAME);
     });
 
+    //boton de sortear por cantidad, cambia el criterio de la funcion
     document.getElementById("sortByCount").addEventListener("click", function(){
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
     });
 
+    //limpia los campos para filtrar
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
