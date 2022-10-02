@@ -3,10 +3,12 @@ let imagenes = [];
 let relacionados = [];
 let productos;
 let idProductos = localStorage.getItem("produID");
+var myCarousel = document.querySelector("#myCarousel");
+var carousel = new bootstrap.Carousel(myCarousel);
 
 //funcion de mostrar informacion
 function mostrarInfo() {
-document.getElementById("nombre").innerHTML = productos.name;
+  document.getElementById("nombre").innerHTML = productos.name;
   document.getElementById("descripcion").innerHTML = productos.description;
   document.getElementById("categoria").innerHTML = productos.category;
   document.getElementById("vendidos").innerHTML = productos.soldCount;
@@ -17,49 +19,87 @@ document.getElementById("nombre").innerHTML = productos.name;
 // funcion de mostrar solo las fotos
 function mostrarFotos() {
   let htmlContentToAppend = "";
-    htmlContentToAppend += `
-    <div class="images p-3">
-    <div class="text-center p-4" style="width: 400px; height: 200px;"> <img id="main-image"  class= "img-responsive" src="${imagenes[0]}" width="250" /> </div>
-    <div id="imagen" class="thumbnail text-center" style="width: 400px; height: 200px;">
-     </div>
+
+  htmlContentToAppend += `
+    <div class="carousel-item active">
+    <img src="${imagenes[0]}" class="d-block w-100" alt="...">
+  </div>
+  <div class="carousel-item">
+      <img src="${imagenes[1]}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="${imagenes[2]}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="${imagenes[3]}" class="d-block w-100" alt="...">
     </div>
     `;
-    document.getElementById("cosoFotos").innerHTML = htmlContentToAppend;
-    let htmlContentToAppendDos ="";
-    for(let imagen of imagenes){
-      htmlContentToAppendDos +=`<img onclick="change_image(this)" src="${imagen}" width="100"></img>`
-    }
-    document.getElementById("imagen").innerHTML = htmlContentToAppendDos;
-  }
+  document.getElementById("cosoFotos").innerHTML = htmlContentToAppend;
+}
 
+// funcion de mostrar comentarios
+function mostrarComentarios() {
+  let htmlContentToAppendTres = "";
+  for (let comentario of comentarios) {
+    htmlContentToAppendTres += `
+    <div class="d-flex flex-start">
+    <div>
+      <h6 class="fw-bold mb-1">${comentario.user}</h6>
+      <div class="d-flex align-items-center mb-3">
+        <p class="mb-0">
+        ${comentario.dateTime} <br>
+        Calificacion:  <span class=" fa fa-star checked"></span> X ${comentario.score}
+        </p>
+      </div>
+      <p class="mb-0">
+        ${comentario.description}
+      </p>
+
+    </div>
+  </div>
+</div>
+<hr class="my-0" />
+<br>`;
+  }
+  document.getElementById("comentarios").innerHTML = htmlContentToAppendTres;
+}
+
+function agregarComentario() {
+  let fecha = new Date();
+  let comentario ={};
+  comentario.user = sessionStorage.getItem("user");
+  comentario.description = document.getElementById("cajaComentario").value;
+  comentario.dateTime= fecha.getFullYear() + "-" + parseInt(fecha.getMonth()+ 1) + "-" + fecha.getDate() + " " + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+  comentario.score = document.getElementById("puntuacion").value;
+  comentarios.push(comentario);
+  mostrarComentarios();
+
+}
+
+// toma la id del relacionado que se haga click y vuelve a setear el produ id con esa id y carga de nuevo product info
+function accederRelacionados(id) {
+  localStorage.setItem("produID", id);
+  window.location = "product-info.html";
+}
 
 // funcion de mostrar los relacionados
-function mostrarRelacionados(){
-  let htmlContentToAppend= "";
-  for(let relacionado of relacionados){
-  htmlContentToAppend += `<div class= "box" ><br> <p class="">${relacionado.name}</p> <img class= "" src="${relacionado.image}" width="100"> </div> `
-}
-
-
-document.getElementById("relacionados").innerHTML = htmlContentToAppend;
-}
-
-function mostrarComentarios(){
-
-  let htmlContentToAppendTres ="";
-  for (let comentario of comentarios){
-    htmlContentToAppendTres += `<li> ${comentario.user} dijo: "${comentario.description}" <span class="fa fa-star checked"></span> X ${comentario.score} <br> publicado el: ${comentario.dateTime} </li>`;
+function mostrarRelacionados() {
+  let htmlContentToAppend = "";
+  for (let relacionado of relacionados) {
+    htmlContentToAppend += `
+    <div class="col-md-3">
+    <div onclick="accederRelacionados(${relacionado.id})" class="product">
+      <div class="product-card">
+        <span class="sale">${relacionado.name}</span>
+        <img src="${relacionado.image}" class="rounded img-fluid">
+      </div>
+    </div>
+  </div>`;  
   }
-  document.getElementById('comentarios').innerHTML = htmlContentToAppendTres;
+
+  document.getElementById("relacionados").innerHTML = htmlContentToAppend;
 }
 
-// funcion del snippet de bootstrap
-function change_image(image){
-
-    var container = document.getElementById("main-image");
-
-   container.src = image.src;
-}
 
 // getJSON de la info completa de los productos
 document.addEventListener("DOMContentLoaded", () => {
@@ -73,19 +113,20 @@ document.addEventListener("DOMContentLoaded", () => {
       mostrarInfo();
       mostrarFotos();
       mostrarRelacionados();
-
     }
   });
 
-//getJSON de los comentarios
-  getJSONData(PRODUCT_INFO_COMMENTS_URL + idProductos + EXT_TYPE).then(function (
-    resultObj
-  ) {
-    if (resultObj.status === "ok") {
-      comentarios = resultObj.data;
-      console.log(comentarios);
-      mostrarComentarios();
+  //getJSON de los comentarios
+  getJSONData(PRODUCT_INFO_COMMENTS_URL + idProductos + EXT_TYPE).then(
+    function (resultObj) {
+      if (resultObj.status === "ok") {
+        comentarios = resultObj.data;
+        mostrarComentarios();
+      }
     }
-  });
-
+  );
+  document.getElementById('enviar').addEventListener('click',()=>{
+    agregarComentario();
+    document.getElementById("cajaComentario").value = "";
+})
 });

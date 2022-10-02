@@ -3,6 +3,40 @@
 .container,
 .site-header {
   font-family: "Raleway", serif !important;
+  position: relative;
+}
+.fondo {
+  background-color: #181a1b;
+}
+* {
+  color: #d1cdc7;
+}
+.letras {
+  color: #d1cdc7;
+}
+#cajaComentario {
+  height: 100px;
+  width: 730px;
+  text-align: inherit;
+  
+}
+#achicar {
+  padding: 50px;
+}
+#agrandar {
+  width: 1100px;
+  margin: -25px 0 0 -25px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#gris {
+  background-color: #181a1b;
+}
+
+.checked {
+  color: orange;
 }
 
 .jumbotron .display-4 {
@@ -195,24 +229,24 @@ a.custom-card:hover {
   width: 344px;
 }
 
-.probando {
-  margin-left: auto;
-  width: 300px;
-  align-content:space-between;
-  justify-self: end;
-  align-items:baseline;
-  justify-self: center;
-}
 .comentario {
-width: 200px;
+  width: 200px;
 }
+/* /////////////////////////estilo del coso de comentarios/////////////////////////////////*/
+.link-muted {
+  color: #aaa;
+}
+.link-muted:hover {
+  color: #1266f1;
+}
+
 /* ////////////////////////estilos del snippet/////////////////////////////////////////////*/
 
 .card {
   border: none;
 }
 .product {
-  background-color: #eee;
+  background-color: #222426;
 }
 .brand {
   font-size: 13px;

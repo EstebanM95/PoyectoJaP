@@ -8,16 +8,16 @@
     />
     <title>eMercado - Todo lo que busques está aquí</title>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="fondo">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container">
         <button
@@ -43,12 +43,15 @@
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
             <li class="nav-item">
-              <a id="usuario" class="nav-link active"></a>
-            </li>
-            <li class="nav-item">
-              <button id="cierro" class="btn btn-secondary">
-                Cerrar Sesión
-              </button>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                  <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                  <li id="cierro"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                </ul>
+              </div>
             </li>
           </ul>
         </div>
@@ -56,72 +59,104 @@
     </nav>
     <main>
       <div class="container mt-5 mb-5">
-        <div class="row d-flex justify-content-center">
+        <div id="achicar"class="letras row d-flex justify-content-center">
           <div class="col-md-10">
-            <div class="card">
+            <div class=" card">
               <div class="row">
-                <div class="col-md-6">
-                  <div id="cosoFotos" class="images p-3"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="product p-4">
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    ></div>
-                    <div class="mt-4 mb-3">
-                      <p id="categoria"></p>
-                      <h4 id="nombre" class="text-uppercase"></h4>
-                      <h5 id="descripcion" class=""></h5>
-                      <div
-                        class="price d-flex flex-row align-items-center"
-                      ></div>
+                  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="cosoFotos" >
+                      </div>
                     </div>
-                    <p id="descripcion" class="about"></p>
-                    <div class="sizes mt-5">
-                      <h6 class="">
-                        Vendidos:
-                        <span id="vendidos"></span>
-                      </h6>
-                    </div>
-                    <p>
-                      <span id="moneda"></span>
-                      <span id="precio" class="act-price"></span>
-                    </p>
-                    <div class="cart mt-4 align-items-center">
-                      <button class="btn btn-danger text-uppercase mr-2 px-4">
-                        Añadir al carrito
-                      </button>
-                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Siguiente</span>
+                    </button>
                   </div>
+
+              </div>
+            </div>
+              <div class="product p-4">
+                <div
+                  class="d-flex justify-content-between align-items-center"
+                ></div>
+                <div class="mt-4 mb-3">
+                  <p id="categoria"></p>
+                  <h4 id="nombre" class="text-uppercase"></h4>
+                  <h5 id="descripcion" class=""></h5>
+                  <div
+                    class="price d-flex flex-row align-items-center"
+                  ></div>
+                </div>
+                <p id="descripcion" class="about"></p>
+                <div class="sizes mt-5">
+                  <h6 class="">
+                    Vendidos:
+                    <span id="vendidos"></span>
+                  </h6>
+                </div>
+                <p>
+                  <span id="moneda"></span>
+                  <span id="precio" class="act-price"></span>
+                </p>
+                <div class="cart mt-4 align-items-center">
+                  <button class="btn btn-danger text-uppercase mr-2 px-4">
+                    Añadir al carrito
+                  </button>
                 </div>
               </div>
-            </div>
-            <div id="" class="product">
-              <p clas="product p-4">Comentarios:</p>
-              <ul id="comentarios"></ul>
-            </div>
-            <div class="product">
-              <p clas="product p-4">Agrega tu comentario:</p>
-              <textarea id="comentario"></textarea> <br />
-              <label for="puntaje"
-                >Puntaje: <span class="fa fa-star checked"></span> </label
-              >X<select name="puntuacion" id="puntuacion">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select><br>
-              <button id="postear" class="btn-primary">Publicar</button>
-            </div>
-            <div id="relacionados" class="probando product p-4">
-              <br>
-              <label for="">Productos relacionados</label>
-              <div class="d-flex probando" id="relacionados">
-                <label for="">Productos relacionados</label>
+              <section class="product p-4">
+                <div class="fondo card text-dark col-md-12 ">
+                  <div class="card-body p-4">
+                          <h4 class="mb-0">Comentarios:</h4>
+                          <br>
+                          <div id="comentarios">
+                            <!-- aca van los comentarios -->
+                          </div>
+                          <section id="gris">                          
+                            <div class="fondo card text-dark">
+                              <div class=" col-lg-8 col-xl-6 fondo card text-dark">
+                                  <div class=" p-4">
+                                    <div class="d-flex flex-start w-100">
+                                      <div class="w-100">
+                                        <h4 class="mb-0">Agrega tu Comentario:</h4>
+                                        <br>
+                                        <h5 class="mb-0">Puntuacion:</h5>
+                                        <select name="puntuacion" id="puntuacion" class="letras">
+                                          <option value = "1">1</option>
+                                          <option value = "2">2</option>
+                                          <option value = "3">3</option>
+                                          <option value = "4">4</option>
+                                          <option value = "5">5</option>
+                                        </select>
+                                        <span class="fa fa-star checked"></span>
+                                        <div class="form-outline">
+                                          <textarea class="form-control" id="cajaComentario"></textarea>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-3">
+                                          <button type="button" id="enviar" class="btn btn-primary">
+                                            Enviar <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>                              
+                              </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+              </section>
+              <div class="product p-4">
+                <h4 class="mb-0">Productos relacionados</h4>
+                <div class="container mt-5" >
+                  <div id="relacionados" class="row g-2">
+                    <!-- aca van los comentarios -->
+                  </div>
               </div>
-              
-            </div>
           </div>
         </div>
       </div>
