@@ -1,4 +1,5 @@
 let productos=[];
+let listafiltrada = [];
 const MAYOR_A_MENOR_PRECIO = "+-";
 const MENOR_A_MAYOR_PRECIO = "-+";
 const ORDEN_CANTIDAD_VENDIDOS = "precio";
@@ -69,7 +70,19 @@ function mostrarProductos(array){
 
 }
 
+function buscador(){
 
+    
+    let buscado = document.getElementById("buscador").value;
+
+    let listafiltrada = productos.filter(productos => {
+    
+        nombreBuscado = productos.name.toLowerCase().indexOf(buscado.toLowerCase()) > -1;
+        descripcionBuscado = productos.description.toLowerCase().indexOf(buscado.toLowerCase()) > -1;
+
+    return (nombreBuscado) || (descripcionBuscado)})
+    mostrarProductos(listafiltrada);
+}
 
 //mostrar categorias ordenadas
 function mostrarProductosFiltrados(criterio){
@@ -115,6 +128,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         mostrarProductos(productos);
     });
+
+    document.getElementById("buscar").addEventListener("click", ()=>{
+
+        buscador(listafiltrada);
+    })
 
     document.getElementById("botonFiltrar").addEventListener("click", ()=>{
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad

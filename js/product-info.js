@@ -48,7 +48,7 @@ function mostrarComentarios() {
       <div class="d-flex align-items-center mb-3">
         <p class="mb-0">
         ${comentario.dateTime} <br>
-        Calificacion:  <span class=" fa fa-star checked"></span> X ${comentario.score}
+        Calificacion: ${puntaje(comentario.score)}
         </p>
       </div>
       <p class="mb-0">
@@ -63,6 +63,21 @@ function mostrarComentarios() {
   }
   document.getElementById("comentarios").innerHTML = htmlContentToAppendTres;
 }
+
+function puntaje(array){
+  let puntos ="";
+  
+  for (let i = 1; i <= 5; i++){
+      if(i <= array){
+          puntos += `<i class="fa fa-heart checked" aria-hidden="true"></i>`;
+          
+      }else {
+          puntos += `<i class="fa fa-heart" aria-hidden="true"></i>`;
+      } 
+  }
+  return puntos;
+}
+
 
 function agregarComentario() {
   let fecha = new Date();
