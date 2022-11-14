@@ -48,7 +48,7 @@ function mostrarProductos(array){
         ((precioMax == undefined) || (precioMax != undefined && parseInt(products.cost) <= precioMax))){
 
         htmlContentToAppend += `
-        <div onclick="setProduId(${products.id})" class="fondo list-group-item list-group-item-action cursor-active">
+        <div onclick="setProduId(${products.id})" class="list-group-item list-group-item-action cursor-active">
         <div class="row">
             <div class="col-3">
                 <img src="${products.image}" alt="${products.description}" class="img-thumbnail">

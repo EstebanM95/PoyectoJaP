@@ -5,23 +5,33 @@
   font-family: "Raleway", serif !important;
   position: relative;
 }
+.margin-right{
+  margin-right: 20%;
+  
+}
+.gradiente{
+  background-image: linear-gradient(to bottom right, #00467F, #a5cc82);
+
+}
 .fondo {
-  background-color: #181a1b;
+  background-color: #ebebeb;
 }
 * {
-  color: #d1cdc7;
+  color: black;
 }
 .letras {
-  color: #d1cdc7;
+  color: black;
 }
+
+
 #cajaComentario {
   height: 100px;
-  width: 730px;
   text-align: inherit;
   
 }
 #achicar {
   padding: 50px;
+  background-color: white;
 }
 #agrandar {
   width: 1100px;
@@ -31,9 +41,13 @@
   display: flex;
 }
 
-#gris {
-  background-color: #181a1b;
+.container {
+  padding: 2rem 0rem;
 }
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}s
 
 .jumbotron .display-4 {
   font-weight: bold;
@@ -52,10 +66,13 @@ nav a {
   user-select: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+  .h-custom {
+    height: 100vh !important;
+    }
 }
 
 .jumbotron {
@@ -216,7 +233,7 @@ a.custom-card:hover {
 }
 
 .checked {
-  color: orange;
+  color: #a5cc82;
 }
 .centrado {
   text-align: center;
@@ -296,4 +313,50 @@ label.radio input:checked + span {
 }
 .cart i {
   margin-right: 10px;
+}
+
+/* //////////////////////estilo del perfil/////////////////*/
+body {
+  background: rgb(99, 39, 120)
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8
+}
+
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: #682773
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.add-experience:hover {
+  background: #BA68C8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #BA68C8
 }

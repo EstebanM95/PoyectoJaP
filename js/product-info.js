@@ -1,4 +1,5 @@
 let comentarios = [];
+let compras = [];
 let imagenes = [];
 let relacionados = [];
 let productos;
@@ -37,6 +38,23 @@ function mostrarFotos() {
   document.getElementById("cosoFotos").innerHTML = htmlContentToAppend;
 }
 
+//funcion para meter cosas al carrito
+function agregarArticulo() {
+  let articulo = {};
+  articulo.id = JSON.parse(localStorage.getItem("produID"));
+  articulo.name = productos.name;
+  articulo.count = 1;
+  articulo.currency = productos.currency;
+  articulo.unitCost = productos.cost;
+  if(articulo.currency == "UYU"){
+    articulo.unitCost = Math.round(articulo.unitCost /40);
+    articulo.currency = "USD"
+  }
+  articulo.image = imagenes[0];
+  compras.push(articulo);
+  localStorage.setItem("compras", JSON.stringify(compras));
+}
+
 // funcion de mostrar comentarios
 function mostrarComentarios() {
   let htmlContentToAppendTres = "";
@@ -64,31 +82,39 @@ function mostrarComentarios() {
   document.getElementById("comentarios").innerHTML = htmlContentToAppendTres;
 }
 
-function puntaje(array){
-  let puntos ="";
-  
-  for (let i = 1; i <= 5; i++){
-      if(i <= array){
-          puntos += `<i class="fa fa-heart checked" aria-hidden="true"></i>`;
-          
-      }else {
-          puntos += `<i class="fa fa-heart" aria-hidden="true"></i>`;
-      } 
+function puntaje(array) {
+  let puntos = "";
+
+  for (let i = 1; i <= 5; i++) {
+    if (i <= array) {
+      puntos += `<i class="fa fa-heart checked" aria-hidden="true"></i>`;
+    } else {
+      puntos += `<i class="fa fa-heart" aria-hidden="true"></i>`;
+    }
   }
   return puntos;
 }
 
-
 function agregarComentario() {
   let fecha = new Date();
-  let comentario ={};
+  let comentario = {};
   comentario.user = sessionStorage.getItem("user");
   comentario.description = document.getElementById("cajaComentario").value;
-  comentario.dateTime= fecha.getFullYear() + "-" + parseInt(fecha.getMonth()+ 1) + "-" + fecha.getDate() + " " + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+  comentario.dateTime =
+    fecha.getFullYear() +
+    "-" +
+    parseInt(fecha.getMonth() + 1) +
+    "-" +
+    fecha.getDate() +
+    " " +
+    fecha.getHours() +
+    ":" +
+    fecha.getMinutes() +
+    ":" +
+    fecha.getSeconds();
   comentario.score = document.getElementById("puntuacion").value;
   comentarios.push(comentario);
   mostrarComentarios();
-
 }
 
 // toma la id del relacionado que se haga click y vuelve a setear el produ id con esa id y carga de nuevo product info
@@ -103,18 +129,17 @@ function mostrarRelacionados() {
   for (let relacionado of relacionados) {
     htmlContentToAppend += `
     <div class="col-md-3">
-    <div onclick="accederRelacionados(${relacionado.id})" class="product">
+    <div onclick="accederRelacionados(${relacionado.id})" class="">
       <div class="product-card">
         <span class="sale">${relacionado.name}</span>
         <img src="${relacionado.image}" class="rounded img-fluid">
       </div>
     </div>
-  </div>`;  
+  </div>`;
   }
 
   document.getElementById("relacionados").innerHTML = htmlContentToAppend;
 }
-
 
 // getJSON de la info completa de los productos
 document.addEventListener("DOMContentLoaded", () => {
@@ -140,8 +165,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   );
-  document.getElementById('enviar').addEventListener('click',()=>{
+
+  if(localStorage.getItem("articulo")!= null){
+
+    fulanito = JSON.parse(localStorage.getItem("articulo"))
+  }
+  document.getElementById("sumarAlCarrito").addEventListener("click", () => {
+    agregarArticulo();
+    location.href="cart.html" ;
+  });
+  document.getElementById("enviar").addEventListener("click", () => {
     agregarComentario();
     document.getElementById("cajaComentario").value = "";
-})
+  });
 });

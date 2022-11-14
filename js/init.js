@@ -64,7 +64,7 @@ if (usuario == null){
 //enviamos el mensaje de salida, borrar el local storage para no dejar un usuario o id
 //redirigimos al login de nuevo
 document.getElementById("cierro").addEventListener("click", () => {
-  alert("Nos Vemos");
-  localStorage.clear();
+  localStorage.removeItem("perfil");
+  alert("Nos Vemos");  
   location.href = "login.html";
 });

@@ -5,14 +5,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,500,500i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
-
 <body class="fondo">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+  <nav class="navbar navbar-expand-lg gradiente navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,12 +45,200 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <section class="h-100 h-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card">
+                <div class="card-body p-5">
+                  <div class="row">      
+                    <div class="col-lg-7">      
+                      <div class="d-flex justify-content-between align-items-center mb-5">
+                        <div>
+                          <h5 class="mb-1">Tu carrito</h5>
+                        </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-hover table table-image">
+                          <thead class="thead-dark">
+                              <tr>
+                              <th scope="col">Imagen</th><th scope="col">Producto</th><th scope="col">Costo (USD)</th><th scope="col">Subtotal (USD)</th><th scope="col">Cantidad</th>
+                              </tr>
+                              <tbody id="carrito" novalidate>
+                              <!-- aca va el for del carrito -->
+                              </tbody>                         
+                          </thead>
+                        </table>
+                      </div>  
+                    </div>
+                    <div class="col-lg-5">      
+                      <div class="card bg-primary text-white rounded-3">
+                        <div class="gradiente card-body">
+                          <form id="formulario" method="post" class="needs-validation" novalidate>
+                          <div class="d-flex justify-content-between align-items-center mb-5">
+                            <h5 class="mb-0">Direccion de envío</h5>
+                          </div>     
+                          <div class="mt-5">
+                            <div class="form-outline form-white mb-5">
+                              <input type="text" id="calleUno" class="form-control form-control-lg" siez="17"
+                                placeholder="Calle principal" required/>
+                              <label class="form-label" for="calleUno">Calle 1</label>
+                              <div class="invalid-feedback">
+                                Debe ingresar una calle principal.
+                              </div> 
+                            </div>
+      
+                            <div class="form-outline form-white mb-5">
+                              <input type="text" id="calleDos" class="form-control form-control-lg" siez="17"
+                                placeholder="Esquina" required/>
+                              <label class="form-label" for="calleDos">Calle 2</label>
+                              <div class="invalid-feedback">
+                                Debe ingresar una calle secundaria.
+                              </div> 
+                            </div>
+      
+                            <div class="row mb-5">
+                              <div class="col-md-6">
+                                <div class="form-outline form-white">
+                                  <input type="text" id="nroPuerta" class="form-control form-control-lg"
+                                    placeholder="Número" size="7" id="numero" required/>
+                                  <label class="form-label" for="nroPuerta">Número de puerta</label>
+                                  <div class="invalid-feedback">
+                                    Debe ingresar un número de puerta
+                                  </div> 
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-outline form-white">
+                                  <select id="tipoEnvio" class="form-select form-select-lg" width="50px" onchange="costoDeEnvio(), totalTotal()" aria-label="multiple select example">
+                                    <option value="0.05" name="costoEnvio" selected >Standard 15 dias (5%)</option>
+                                    <option value="0.07" name="costoEnvio">Express 7 dias (7%)</option>
+                                    <option value="0.15" name="costoEnvio" >Premium 2 dias (15%)</option>
+                                  </select>
+                                  <label class="form-label" for="typeText">Tipo de envío</label>
+                                </div>
+                              </div>
+                            </div>
+      
+                          </div>
+      
+                          <hr class="my-5">
+      
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2">Subtotal (USD)</p>
+                            <span id="subTotalEnvio"class="mb-2 text-primary bold"></span>
+                          </div>
+      
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2">Costo de envío (USD)</p>
+                            <span><Strong id="costoEnvio" class="mb-2 text-primary bold"></Strong></span>
+                          </div>
+      
+                          <div class="d-flex justify-content-between mb-5">
+                            <p class="mb-2">Total (USD)</p>
+                            <span><Strong id="total" class="mb-2 act-price"> </Strong></span>
+                          </div>
+
+                          <!-- link para abrir el modal -->
+                          <div class="d-flex justify-content-between mb-5">
+                            <button id="formasDePago" type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="radioButtons()">Seleccionar forma de pago</button>
+                            <div class="invalid-feedback" id="feedbackPago">
+                              Debe elegir un método de pago
+                            </div>
+                          </div>
+                          
+                          <!-- el modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Métodos de pago</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body letras mt-5 row mb-5">
+                                     <form method="post" class="needs-validation" novalidate>
+                                        <div class="row mb-5">
+                                          <div>
+                                            <hr>
+                                            <input type="radio" id="tarjeta" name="pago" value="tarjeta" onclick="radioButtons()" >                                              
+                                            <label for="tarjeta">Tarjeta de crédito</label>                                            
+                                          </div> 
+                                          <div class="col-md-6">
+                                          <div class="form-outline form-white">
+                                              <label class="form-label" for="nroTarjeta">Número de tarjeta</label>
+                                              <input type="text" id="nroTarjeta" class="form-control form-control-lg"
+                                                placeholder="Número de tarjeta" size="7" required/>
+                                                <div class="invalid-feedback">
+                                                  Debe ingresar un número de tarjeta
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="form-outline form-white">
+                                              <label class="form-label" for="cvc">CVC</label>
+                                              <input type="text" id="cvc" class="form-control form-control-lg"
+                                                placeholder="Ej: 123" size="7" id="cvc" required/>
+                                                <div class="invalid-feedback">
+                                                  Debe ingresar un código cvc
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="form-outline form-white">
+                                              <label class="form-label" for="vencimiento">Vencimiento</label>
+                                              <input type="text" id="vencimiento" class="form-control form-control-lg"
+                                                placeholder="MM/AA" size="7" required/>
+                                                <div class="invalid-feedback">
+                                                  Debe ingresar una fecha de vencimiento
+                                                </div>
+                                                <hr>
+                                                <div>
+                                                  <input type="radio" id="transferencia" name="pago" value="transferencia" onclick="radioButtons()" checked>                                              
+                                                  <label for="transferencia">Transferencia bancaria</label>                                                
+                                                </div>
+                                                <br>
+                                                <div class="form-outline form-white">
+                                                  <label class="form-label" for="typeExp">Cuenta bancaria</label>
+                                                  <input type="text" id="cuenta" class="form-control form-control-lg"
+                                                    placeholder="Número de cuenta" size="7" required/>
+                                                    <div class="invalid-feedback">
+                                                      Debe ingresar un número de cuenta 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button id="botonAceptar"onclick="validacion()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          <button type="submit" id="finalizarCompra" class="btn btn-danger text-uppercase mr-2 px-5">
+                            <div class="d-flex justify-content-between">
+                              <span>Finalizar compra <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                            </div>
+                          </button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
   <footer class="text-muted">
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -72,6 +259,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
