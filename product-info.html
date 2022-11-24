@@ -130,7 +130,6 @@
               <h5 id="descripcion" class=""></h5>
               <div class="price d-flex flex-row align-items-center"></div>
             </div>
-            <p id="descripcion" class="about"></p>
             <div class="sizes mt-5">
               <h6 class="">
                 Vendidos:
@@ -141,14 +140,32 @@
               <span id="moneda"></span>
               <span id="precio" class="act-price"></span>
             </p>
+            <!-- boton agregar al carrito con modal -->
             <div class="cart mt-4 align-items-center">
-              <button
-                id="sumarAlCarrito" 
-                class="btn btn-danger text-uppercase mr-2 px-4"
-              >
-                Añadir al carrito
-              </button>
+              <button type="button" id="sumarAlCarrito" class="btn text-uppercase mr-2 px-4 gradienteDos" data-bs-toggle="modal" data-bs-target="#modalPregunta"> Añadir al carrito </button>
             </div>
+            <!-- modal -->
+            <div class="modal fade" id="modalPregunta" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Pregunta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ¿Quieres seguir comprando o ir al carrito?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="seguirComprando" class="btn btn-secondary" data-dismiss="modal">Seguir comprando</button>
+                    <button type="button" id="IrAlCarrito" class="btn btn-primary" location.href="cart.html" >ir al carrito</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- fin del modal -->
+            
           </div>
           <section class="p-4">
             <div class="fondo card text-dark col-md-12">
@@ -171,9 +188,9 @@
                       <option value="5">5</option>
                     </select>
                     <span class="fa fa-heart checked"></span>
-                    <textarea class="form-control md-textarea form-control textarea" id="cajaComentario" rows="4" style="background: #fff"></textarea>
+                    <textarea class="form-control md-textarea textarea" id="cajaComentario" rows="4" style="background: #fff"></textarea>
                     <div class="d-flex justify-content-between mt-3">
-                      <button type="button" id="enviar" class="btn btn-primary">
+                      <button type="button" id="enviar" class="btn gradienteBoton">
                         Enviar <i class="fas fa-long-arrow-alt-right ms-1"></i>
                       </button>
                     </div>
@@ -182,6 +199,7 @@
               </div>
             </div>
           </section>
+          
           <div class="p-4">
             <h4 class="mb-0">Productos relacionados</h4>
             <div class="container mt-5">

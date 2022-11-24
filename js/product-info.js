@@ -1,5 +1,5 @@
 let comentarios = [];
-let compras = [];
+let carritoLocal = [];
 let imagenes = [];
 let relacionados = [];
 let productos;
@@ -38,21 +38,21 @@ function mostrarFotos() {
   document.getElementById("cosoFotos").innerHTML = htmlContentToAppend;
 }
 
-//funcion para meter cosas al carrito
+//funcion para meter articulos al carrito
 function agregarArticulo() {
   let articulo = {};
-  articulo.id = JSON.parse(localStorage.getItem("produID"));
-  articulo.name = productos.name;
-  articulo.count = 1;
-  articulo.currency = productos.currency;
-  articulo.unitCost = productos.cost;
-  if(articulo.currency == "UYU"){
-    articulo.unitCost = Math.round(articulo.unitCost /40);
-    articulo.currency = "USD"
+  articulo.id = JSON.parse(localStorage.getItem("produID"));//tomo la id del producto del json
+  articulo.name = productos.name;// tomo el nombre del arreglo del producto
+  articulo.count = 1; //siempre empieza en 1 unidad de producto
+  articulo.currency = productos.currency; // tomo la moneda del arreglo del producto
+  articulo.unitCost = productos.cost;// tomo el costo del arreglo del producto
+  if(articulo.currency == "UYU"){// si la moneda del producto es el string "UYU", 
+    articulo.unitCost = Math.round(articulo.unitCost /40);//divide y redondea el costo del articulo por 40
+    articulo.currency = "USD"//modifica la moneda por "USD"
   }
-  articulo.image = imagenes[0];
-  compras.push(articulo);
-  localStorage.setItem("compras", JSON.stringify(compras));
+  articulo.image = imagenes[0];//toma la primer imagen del arreglo imagenes
+  carritoLocal.push(articulo);//empuja el articulo al arreglo carritoLocal
+  localStorage.setItem("carritoLocal", JSON.stringify(carritoLocal));//crea el item carritoLocal en localstorage, stringifica carritoLocal y lo mete en carritoLocal del local
 }
 
 // funcion de mostrar comentarios
@@ -82,6 +82,7 @@ function mostrarComentarios() {
   document.getElementById("comentarios").innerHTML = htmlContentToAppendTres;
 }
 
+// muestra el puntaje de los comentarios, el rating lo trajo el JSON
 function puntaje(array) {
   let puntos = "";
 
@@ -95,6 +96,7 @@ function puntaje(array) {
   return puntos;
 }
 
+//crea un comentario igual al los del json y lo agrega al array asi se muestran igual
 function agregarComentario() {
   let fecha = new Date();
   let comentario = {};
@@ -141,8 +143,11 @@ function mostrarRelacionados() {
   document.getElementById("relacionados").innerHTML = htmlContentToAppend;
 }
 
+
 // getJSON de la info completa de los productos
 document.addEventListener("DOMContentLoaded", () => {
+carritoLocal= JSON.parse(localStorage.getItem("carritoLocal"));
+
   getJSONData(PRODUCT_INFO_URL + idProductos + EXT_TYPE).then(function (
     resultObj
   ) {
@@ -155,7 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
       mostrarRelacionados();
     }
   });
-
   //getJSON de los comentarios
   getJSONData(PRODUCT_INFO_COMMENTS_URL + idProductos + EXT_TYPE).then(
     function (resultObj) {
@@ -165,17 +169,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   );
-
-  if(localStorage.getItem("articulo")!= null){
-
-    fulanito = JSON.parse(localStorage.getItem("articulo"))
-  }
+  document.getElementById("seguirComprando").addEventListener("click",()=>{
+    location.href="categories.html";
+  })
+  document.getElementById("IrAlCarrito").addEventListener("click",()=>{
+    location.href="cart.html";
+  })
   document.getElementById("sumarAlCarrito").addEventListener("click", () => {
     agregarArticulo();
-    location.href="cart.html" ;
   });
   document.getElementById("enviar").addEventListener("click", () => {
     agregarComentario();
     document.getElementById("cajaComentario").value = "";
   });
+
 });

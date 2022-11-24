@@ -1,8 +1,8 @@
 let correo = sessionStorage.getItem("user");
 //recibe el avatar cargado, los transforma a base64 y lo muestra en el lugar
-function cambiarAvatar() {
-  let avatarUsuario = document.getElementById("inputImagen");
-}
+// function cambiarAvatar() {
+//   let avatarUsuario = document.getElementById("inputImagen");
+// }
 
 function mostrarCosas() {
   document.getElementById("email").value = correo;
@@ -11,7 +11,8 @@ function mostrarCosas() {
   document.getElementById("nombre2").value = perfil.segundoNombre;
   document.getElementById("apellido").value = perfil.apellido;
   document.getElementById("apellido2").value = perfil.segundoApellido;
-  document.getElementById("telefono").value = perfil.telefono;  
+  document.getElementById("telefono").value = perfil.telefono; 
+  document.getElementById("imagenUsuario").src = perfil.avatar;
 }
 
 //valida los campos de nombre, apellido, y email
@@ -52,6 +53,7 @@ function tomarDatos() {
   datosLocal.segundoApellido = document.getElementById("apellido2").value;
   datosLocal.correo = document.getElementById("email").value;
   datosLocal.telefono = document.getElementById("telefono").value;
+  datosLocal.avatar = document.getElementById("imagenUsuario").src;
   localStorage.setItem("perfil", JSON.stringify(datosLocal));
 }
 
@@ -87,3 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarCosas();
 
 }); 
+
+document.getElementById("inputImagen").addEventListener("change",()=>{
+  let imagen = document.getElementById("inputImagen").files
+  if(imagen.length>0){
+     let imagenConvertida = imagen[0];
+
+     let filereader = new FileReader();
+
+     filereader.onload = function(event){
+      let base64Data = event.target.result;
+      document.getElementById("imagenUsuario").src = base64Data;
+     }
+     filereader.readAsDataURL(imagenConvertida);
+  }
+})

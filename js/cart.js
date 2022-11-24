@@ -1,4 +1,4 @@
-let compras = JSON.parse(localStorage.getItem("compras"));
+let compras = JSON.parse(localStorage.getItem("carritoLocal"));
 let carrito = [];
 // toma el objeto del local storage, lo parsea y lo agrega al arreglo que tiene el peugeot EL PEUGEOT NO ESTA MAS ALGO PASO
 function cargarElCarrito() {
@@ -65,28 +65,30 @@ function totalTotal() {
   document.getElementById("total").innerHTML = total;
 }
 
-//elimina los comprass uno por uno CORREGIR ERROR
+//elimina los compras uno por uno CORREGIR ERROR
 function borrarcompras(posicion){
 carrito.splice(posicion, 1);
-mostrarCarrito(carrito);
+mostrarCarrito();
+total();
+costoDeEnvio();
+totalTotal();
 }
 
-
-function mostrarCarrito(carrito) {
+function mostrarCarrito() {
   let htmlContentToAppend = "";
-  for (let i = 0; i < carrito.length; i++) {
+  for (let i = 0; i<carrito.length; i++) {
     htmlContentToAppend += `
     <tr>
-    <th> <img src="${carrito[i].image}" alt="imagenes" style="width:65px"</th>
+    <th><img src="${carrito[i].image}" style="width:65px"></th>
     <td>${carrito[i].name}</td>
     <td>${carrito[i].unitCost}</td>
-    <td><span id="subTotal${i}"class="mb-2 act-price costo">${carrito[i].unitCost}</span></td>
+    <td><span id="subTotal${i}"class="mb-2 btn-outline-primary costo">${carrito[i].unitCost}</span></td>
     <td><input id="cantidad${i}" class="form-control text-center form-control-md cantidades margin-right" min="1" max="10" value="1" type="number" onchange="subTotal(carrito[${i}],${i}), total(), costoDeEnvio(), totalTotal()"/></td>
     <td><a href="#!" style="color: #FF0000;"><i onclick="borrarcompras(${i})" name="basurero" class="fas fa-trash-alt act-price"></i></a></td>
     </tr>
     `;
-    document.getElementById("carrito").innerHTML = htmlContentToAppend;
-  }
+
+  }    document.getElementById("carrito").innerHTML = htmlContentToAppend;
 }
 
 function validacion() {
@@ -124,23 +126,35 @@ document.addEventListener("DOMContentLoaded", () => {
       total();
       costoDeEnvio();
       totalTotal();
-      console.log(carrito);
-    }
-    if (localStorage.getItem("compras") != null) {
-      carrito = JSON.parse(localStorage.getItem("compras"));
+    } if (localStorage.getItem("carritoLocal") != null) {
+     // carrito = JSON.parse(localStorage.getItem("compras"));
       mostrarCarrito(carrito);
       total();
       costoDeEnvio();
       totalTotal();
     } else {
-      carrito.push(localStorage.getItem("compras"));
-      localStorage.setItem("compras", JSON.stringify(carrito));
+      carrito.push(localStorage.getItem("carritoLocal"));
+      //localStorage.setItem("compras", JSON.stringify(carrito));
       mostrarCarrito(carrito);
       total();
       costoDeEnvio();
       totalTotal();
     }
   });
+
+  document.getElementById("transferencia").addEventListener("click", ()=>{
+    radioButtons();
+  })
+  document.getElementById("tarjeta").addEventListener("click", ()=>{
+    radioButtons();
+  })
+  document.getElementById("formasDePago").addEventListener("click", ()=>{
+    radioButtons();
+  })
+  document.getElementById("tipoEnvio").addEventListener("change",()=>{
+    costoDeEnvio();
+    totalTotal();
+  })
   document.getElementById("finalizarCompra").addEventListener("click", (evento) => {
       validacion();
       if (document.getElementById("formulario").checkValidity()) {

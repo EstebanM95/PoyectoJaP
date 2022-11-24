@@ -10,8 +10,18 @@
   
 }
 .gradiente{
-  background-image: linear-gradient(to bottom right, #00467F, #a5cc82);
+  background-image: linear-gradient(to bottom right, #5433ff,#20dbff, #a5fecb);
 
+}
+.gradienteBoton{
+  color: white;
+  background-color: #5433ff;
+
+}
+
+.gradienteDos{
+
+  background-color: #20dbff;
 }
 .fondo {
   background-color: #ebebeb;
@@ -19,10 +29,14 @@
 * {
   color: black;
 }
+
 .letras {
   color: black;
 }
 
+.imagencarrito{
+  width:65px;
+}
 
 #cajaComentario {
   height: 100px;
@@ -233,7 +247,7 @@ a.custom-card:hover {
 }
 
 .checked {
-  color: #a5cc82;
+  color: #5433ff;
 }
 .centrado {
   text-align: center;

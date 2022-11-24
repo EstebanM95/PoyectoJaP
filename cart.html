@@ -59,7 +59,7 @@
                         </div>
                       </div>
                       <div class="table-responsive">
-                        <table class="table table-hover table table-image">
+                        <table class="table table-hover table-image">
                           <thead class="thead-dark">
                               <tr>
                               <th scope="col">Imagen</th><th scope="col">Producto</th><th scope="col">Costo (USD)</th><th scope="col">Subtotal (USD)</th><th scope="col">Cantidad</th>
@@ -69,11 +69,11 @@
                               </tbody>                         
                           </thead>
                         </table>
-                      </div>  
+                      </div> 
                     </div>
                     <div class="col-lg-5">      
                       <div class="card bg-primary text-white rounded-3">
-                        <div class="gradiente card-body">
+                        <div class="gradiente  card-body">
                           <form id="formulario" method="post" class="needs-validation" novalidate>
                           <div class="d-flex justify-content-between align-items-center mb-5">
                             <h5 class="mb-0">Direccion de envío</h5>
@@ -101,7 +101,7 @@
                               <div class="col-md-6">
                                 <div class="form-outline form-white">
                                   <input type="text" id="nroPuerta" class="form-control form-control-lg"
-                                    placeholder="Número" size="7" id="numero" required/>
+                                    placeholder="Número" size="7" required/>
                                   <label class="form-label" for="nroPuerta">Número de puerta</label>
                                   <div class="invalid-feedback">
                                     Debe ingresar un número de puerta
@@ -110,7 +110,7 @@
                               </div>
                               <div class="col-md-6">
                                 <div class="form-outline form-white">
-                                  <select id="tipoEnvio" class="form-select form-select-lg" width="50px" onchange="costoDeEnvio(), totalTotal()" aria-label="multiple select example">
+                                  <select id="tipoEnvio" class="form-select form-select-lg" width="50px" aria-label="multiple select example">
                                     <option value="0.05" name="costoEnvio" selected >Standard 15 dias (5%)</option>
                                     <option value="0.07" name="costoEnvio">Express 7 dias (7%)</option>
                                     <option value="0.15" name="costoEnvio" >Premium 2 dias (15%)</option>
@@ -141,7 +141,7 @@
 
                           <!-- link para abrir el modal -->
                           <div class="d-flex justify-content-between mb-5">
-                            <button id="formasDePago" type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="radioButtons()">Seleccionar forma de pago</button>
+                            <button id="formasDePago" type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar forma de pago</button>
                             <div class="invalid-feedback" id="feedbackPago">
                               Debe elegir un método de pago
                             </div>
@@ -160,7 +160,7 @@
                                         <div class="row mb-5">
                                           <div>
                                             <hr>
-                                            <input type="radio" id="tarjeta" name="pago" value="tarjeta" onclick="radioButtons()" >                                              
+                                            <input type="radio" id="tarjeta" name="pago" value="tarjeta">                                              
                                             <label for="tarjeta">Tarjeta de crédito</label>                                            
                                           </div> 
                                           <div class="col-md-6">
@@ -176,7 +176,7 @@
                                             <div class="form-outline form-white">
                                               <label class="form-label" for="cvc">CVC</label>
                                               <input type="text" id="cvc" class="form-control form-control-lg"
-                                                placeholder="Ej: 123" size="7" id="cvc" required/>
+                                                placeholder="Ej: 123" size="7" required/>
                                                 <div class="invalid-feedback">
                                                   Debe ingresar un código cvc
                                                 </div>
@@ -191,7 +191,7 @@
                                                 </div>
                                                 <hr>
                                                 <div>
-                                                  <input type="radio" id="transferencia" name="pago" value="transferencia" onclick="radioButtons()" checked>                                              
+                                                  <input type="radio" id="transferencia" name="pago" value="transferencia" checked>                                              
                                                   <label for="transferencia">Transferencia bancaria</label>                                                
                                                 </div>
                                                 <br>
@@ -214,7 +214,7 @@
                                   </div>
                                 </div>
                               </div>
-                          <button type="submit" id="finalizarCompra" class="btn btn-danger text-uppercase mr-2 px-5">
+                          <button type="submit" id="finalizarCompra" class="btn gradienteBoton text-uppercase mr-2 px-5">
                             <div class="d-flex justify-content-between">
                               <span>Finalizar compra <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
@@ -230,15 +230,13 @@
           </div>
         </div>
       </section>
+      <div class="row">
+        <div class="list-group" id="cat-list-container">
+        </div>
+      </div>
     </div>
   </main>
   <footer class="text-muted">
-    <br>
-    <br><br>
-    <br>
-    <br>
-    <br>
-    <br>
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
