@@ -1,8 +1,5 @@
 let correo = sessionStorage.getItem("user");
 //recibe el avatar cargado, los transforma a base64 y lo muestra en el lugar
-// function cambiarAvatar() {
-//   let avatarUsuario = document.getElementById("inputImagen");
-// }
 
 function mostrarCosas() {
   document.getElementById("email").value = correo;
@@ -20,22 +17,22 @@ function validacion() {
 let nombre = document.getElementById("nombre");
 let apellido = document.getElementById("apellido");
 let bandera = true;
-if(nombre.value == ""){
+if(nombre.value == ""){// si nombre esta vacio muestra el feeback nombre y le da color rojo
   document.getElementById("feedback-nombre").classList.add("invalid-color");
   document.getElementById("feedback-nombre").style.display = "inline";
   bandera = false
-}else{
+}else{//si no, no muestra nada 
   document.getElementById("feedback-nombre").classList.remove("invalid-color");
   document.getElementById("feedback-nombre").style.display = "none";
   bandera = true
 }
 
-if(apellido.value ==""){
+if(apellido.value ==""){// si apellido esta vacio muestra el feeback nombre y le da color rojo
   document.getElementById("feedback-apellido").classList.add("invalid-color");
   document.getElementById("feedback-apellido").style.display = "inline";
   bandera = false
 
-}else{
+}else{// sino, no muestra nada
   document.getElementById("feedback-apellido").classList.remove("invalid-color");
   document.getElementById("feedback-apellido").style.display = "none";
   bandera = true
@@ -73,6 +70,7 @@ document.getElementById("guardar").addEventListener("click", () => {
 
 });
 
+//
   document.getElementById("formularioPerfil").addEventListener("submit", e=>{
     if(!validacion||!formularioPerfil.checkValidity()){
     e.preventDefault();
@@ -85,11 +83,14 @@ document.getElementById("guardar").addEventListener("click", () => {
     eventos.forEach( evento=> {document.body.addEventListener(evento, miValidacion)})
   })
 
-document.addEventListener("DOMContentLoaded", () => {
+
+  // cuando carga la pagina muestra los datos del perfil
+  document.addEventListener("DOMContentLoaded", () => {
   mostrarCosas();
 
 }); 
 
+//el desafiate de agregar foto de perfil
 document.getElementById("inputImagen").addEventListener("change",()=>{
   let imagen = document.getElementById("inputImagen").files
   if(imagen.length>0){
